@@ -1,0 +1,48 @@
+# This file should contain all the record creation needed to seed the database with its default values.
+# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
+#
+# Examples:
+#
+#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
+#   Character.create(name: 'Luke', movie: movies.first)
+
+Patient.create(vorname:"Hans", nachname:"Schmied", geburtsdatum:"23.05.1978")
+Patient.create(vorname:"Melanie", nachname:"Greif", geburtsdatum:"02.11.1964")
+Patient.create(vorname:"Philipp", nachname:"Schmidt", geburtsdatum:"24.03.2004")
+Patient.create(vorname:"Tom", nachname:"Stier", geburtsdatum:"10.09.1996")
+
+Wundart.create(art_name:"Amputation")
+Wundart.create(art_name:"Anus Praeter")
+Wundart.create(art_name:"Ulcus cruris arteriosum")
+Wundart.create(art_name:"Ulcus cruris mixtum")
+Wundart.create(art_name:"Ulcus cruris venosum")
+Wundart.create(art_name:"Dekubitus Grad 1")
+Wundart.create(art_name:"Dekubitus Grad 2")
+Wundart.create(art_name:"Dekubitus Grad 3")
+Wundart.create(art_name:"Dekubitus Grad 4")
+Wundart.create(art_name:"Diabetisches Fußsyndrom")
+Wundart.create(art_name:"Chronische Wunde")
+Wundart.create(art_name:"Postoperative Wundheilungsstörung")
+Wundart.create(art_name:"Mechanische Wunde")
+Wundart.create(art_name:"Pergamenthaut")
+Wundart.create(art_name:"Verbrennung")
+Wundart.create(art_name:"Hautablederung/Abschürfung")
+Wundart.create(art_name:"Platzwunde")
+Wundart.create(art_name:"Tumorwunde")
+Wundart.create(art_name:"Sonde/Drainage/Katheter/Port")
+Wundart.create(art_name:"Kompartmentsyndrom")
+
+Faktor.create(fak_name:"Adipositas")
+Faktor.create(fak_name:"Chronisch venöse Insuffizienz")
+Faktor.create(fak_name:"Diabetes Mellitus Typ 1")
+Faktor.create(fak_name:"Diabetes Mellitus Typ 2")
+Faktor.create(fak_name:"Diabetes Mellitus Typ 3")
+Faktor.create(fak_name:"Immunsuppression")
+Faktor.create(fak_name:"Infektion lokal")
+Faktor.create(fak_name:"Infektion systemisch")
+Faktor.create(fak_name:"Kachexie")
+Faktor.create(fak_name:"Maligner Tumor")
+Faktor.create(fak_name:"Mangelernährung")
+Faktor.create(fak_name:"Medikamente")
+Faktor.create(fak_name:"Periphere arterielle Verschlusskrankheit (pAVK)")
+Faktor.create(fak_name:"Polyneuropathie")

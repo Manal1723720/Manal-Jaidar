@@ -1,0 +1,29 @@
+<%= form_with(model: wound, local: true) do |form| %>
+  <% if wound.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(wound.errors.count, "error") %> prohibited this wound from being saved:</h2>
+
+      <ul>
+        <% wound.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :bezeichnung %>
+    <%= form.text_field :bezeichnung %>
+  </div>
+
+  
+
+  <div class="field">
+    <%= form.label :poly_type %>
+    <%= form.text_field :poly_type %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

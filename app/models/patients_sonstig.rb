@@ -1,0 +1,2 @@
+class PatientsSonstig < ApplicationRecord
+end

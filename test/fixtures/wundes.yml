@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bezeichnung: MyString
+  poly_id: 1
+  poly_type: MyString
+
+two:
+  bezeichnung: MyString
+  poly_id: 1
+  poly_type: MyString

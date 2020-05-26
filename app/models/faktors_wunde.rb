@@ -1,0 +1,2 @@
+class FaktorsWunde < ApplicationRecord
+end

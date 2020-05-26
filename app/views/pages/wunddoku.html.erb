@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Wundversorgung</title>
+    </head>
+
+  <body>
+   <h1>Wundaufnahme</h1>
+   <p>test</p>
+  <ul>
+    <%= @wundarten.each do |wundart| %>
+      <li><%= wundart.art_name %></li>
+    <% end %>
+   </ul>
+  </body>
+</html>

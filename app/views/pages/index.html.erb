@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <link href="stylesheet.css" rel="stylesheet" type=text/css>
+
+  <title>Wundaufnahme</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+<style>
+
+</style>
+</head>
+
+<body>
+
+
+<% form_for @wundes do |f| %>
+
+
+
+  <div class="container">
+    
+    <ul class="nav nav-tabs nav-justified">
+      <li class="nav-item"><a href="#Wunde 1" class="nav-link active" data-toggle="tab">Wunde 1</a></li>
+      <li class="nav-item"><a href="#Neue Wunde" class="nav-link" data-toggle="tab">Neue Wunde</a></li>
+    </ul>
+
+  </div>
+
+  <!-- Erste Zeile Wundart wählen -->
+  <h1 align="center">Wundaufnahme</h1>
+  <div class="row">
+    <div class="col-sm-4" style="background-color:lavender;" align="center">
+      <input type="text" name="Wundart" list="Wundart" placeholder="Wundart wählen">
+      <datalist id="Wundart">
+        <%= @wundarten.each do |wundart| %>
+          <option><%= wundart.art_name %></option>
+        <% end %>       
+      </datalist>
+      </input>
+      <p class="BezeichnungT">Oder wählen Sie eine eigene Bezeichnung </p>
+      <input name="text" type="text" size="20"  placeholder="Bezeichnung">
+    </div>
+
+
+    <!-- Erste Zeile Faktoren wählen -->
+    <div class="col-sm-8" style="background-color:lavenderblush;">
+      <details>
+        <summary>Wundheilung beeinflussende Faktoren </summary>
+
+        <div class="row">
+          <div class="col-sm-6" style="background-color:grey;">
+            <% fields_for( @wunde.faktor) do |faktor| %>
+              <p>
+                  <%= faktor.label :fak_name, "Faktor" %><br />
+                  <%=faktor.check_box :fak_name %>
+               </p>
+  
+            <% end %>   
+<!--
+            <%= Faktor.all.each do |faktor| %>
+              <%= check_box_tag "wunde[fakor_ids][]", faktor.id%>
+              <%= faktor.fak_name%><br>
+            <% end %>    -->
+
+            
+
+            
+          </div>
+      </details>
+    </div>
+  </div>
+
+
+
+  <!-- Zweite Zeile Schaubild wählen -->
+  <div class="row">
+    <div class="col-sm-4" style="background-color: black;">
+      <figure>
+        <p align="center" style="color: white;">Schubild/ Diagramm</p>
+        <img src=https://svgsilh.com/svg/2029276-8bc34a.svg width="520" height="450" alt="Schaubild Mensch">
+      </figure>
+    </div>
+
+    <!-- Zweite Zeile CAVE bestätigen wählen -->
+    <div class="col-sm-5" style="background-color:hotpink;" area-readonly>
+      <p>CAVE</p>
+      </p>
+      <textarea name="CAVE" rows="6" cols="75" readonly placeholder="Es sind keine CAVE Informationen verfügbar">
+      <!-- CAVE einlesen -->
+      </textarea>
+      <!-- Zweite Zeile Bemerkung bestätigen wählen -->
+      <p>Bemerkung</p>
+      </p>
+      <textarea name="multitext" rows="6" cols="75" placeholder="Geben Sie eine Bemerkung ein ..."></textarea>
+    </div> 
+
+
+    <!-- Zweite Zeile Einverständnis bestätigen wählen -->
+    <div class="col-sm-3" style="background-color:darkorange">
+      <input type="checkbox"
+        onclick="document.getElementById('Fotoaufnahme').style.display=this.checked?'block':'none';">
+      Einverständnis für Fotoaufnahme
+
+      <div id="Fotoaufnahme" style="display: none">
+        <figure>
+          <img
+            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAb1BMVEX///8AAADm5uZKSkoRERGurq5OTk6zs7Otra1UVFRRUVH19fVnZ2fw8PCEhIS1tbV2dnaioqLFxcWbm5s8PDzc3Ny9vb1CQkLLy8vW1tYjIyNwcHALCwsaGhpZWVliYmKIiIiTk5MrKyt8fHwxMTHWpb8QAAAFHElEQVR4nO2d63aqMBBGE1tbrNfeFK1Ha+37P+Op1mpukKAZkmF9+x/KMrP9IIiCIwQAAAAAWqbY3o2K1EUQMpe/vKQuhIq+/KOfuhQaCnmhk1tqX6p0MMVCym4r9qVJxxRtwY4pmpto56abR6eglI+pC4uFO8EOpViVYGdSrE6wIym6ZlEV9jOqT5C9ol+QuWKIIGvF+kmmA4p1hwkdpgeN0ATZphieINMUmyTIMkU7wdFaWViPuKdoHyYGQlsUA94pugQNQ96K9ib6I2gaiie+G6ozQduQb4p2gg/Hxy1D8cAzxYoEXYY8U6xK0GnIMcXKBN2G/FK0E3w6P+c05JZiTYJVhrwOGrbgk/JshSEnxepJ5kiVIZ8NtT7BGkMuKXoSrDN0pDhtr/BQfAnWGjpSzO6gMfUlWG8o7nJPse44+EetYe77oncfPFBvmPeMGiToM8xZMUzQa5iv4kuYoN/QoZjF1VNDqyx7kjniN3QoDukKD+bVLOquYsUAQ/ug8UpVdgPM970iwTBD69XcG3y7/AtLMNDQTPEfRckNeQt9z8MMjRTf4hfcmElYgsGGeoqT2OVewXvoXhNqqKX4HrfY65iECYYbKinmEOEPf78jbepXCzcUm9Nao3hF3sZ8cZgT5p61GhiK6WH+WuR0AjUc+z98NDEUYhzwirnRzJAjMOQPDPkDQ/7AkD8w5A8M+QND/sCQPzDkDwz5A0P+wJA/MOQPDPkDQ/7AkD8w5A8M+QND/sCQPzDkDwxJGY5bGCSh4fxwTe5TST1M24aX1P4uyN0Tj9iq4cshtdMluJvzqMQXVbdp+HEaZiv0+7JoL4xv0XB2HudDiK0yLG2I7RkulYFKof57E+0NKu0ZzpSBZtq496Tjtmeo3oq16qThvTYSDOMBw3jAkAoYxgOGVMAwHjCkAobxgCEVMIwHDKmAYTxgSAUM4wFDKmAYDxhSAcN4wJAKGMYDhlTAMB4wpAKG8YAhFTCMBwypgGE8YEgFDOORylD9J3Lav8tPZfisjETbND6VoVidB/qiHSiZYe88UI92oGSGYvzb8mhLfYdOOsOfGOfPc+IARVrDdoAhf2DIHxjyp9pwnbq0SKw1Q32pG+jb5arjhiuxUBfbuKWbnrGqtDi3MjqSRf+om1F7bMmR3lQsk56RN6I17v0UhbpIfcN6O6g3ycpClOoi8bl3S2iTZ6nvltQn363Q04zGRofG59TlRUBrG7oSl78fOPKdurwIaBvpTJgdtZep67sZbWKRh3Z3+o64TV3gzehdPo/t6fTeptwP+kvN5rclo950Oof2tLegN3797cloNGXOqa1icwpd5vToXn+UX2fFC/qkIj9PD+uHSDlIWOGtLHSV87nSVn88kwauV/Chi8zOTxghsv1kszM8lNPdmfEU7c97VJhd3tVt0epxzzFFM0H9O5nCfJbfvjgyFYzDntmXXn7zOpHqrUwBs8P02FxBytckpV6HtYU6Duulvc7XS4pir2B6bxfvOElyvA3ym8NXU9MvR+XOqfLDsaKU+6yDHM7dVVdMlBvnylK+TR7L915uvJfF56Ki4squ89aEyhRzGg1IkReVCR4wP75xxPNh5dn/CpnjPYN3HBc5cR/yPRPnnbF2F7wwT13ntfwL/7dn80yLB41O+YZ7/wtmRuMThfFu7X/VbPjuN/U7Uk4cn9kzZPV5w68ty90gdf0eRsXtp+q9stjtt4OHu5x42Iz2u2LZjYtHAAAAAHL+A30/OttkCTHHAAAAAElFTkSuQmCC"
+            width="346" height="300" alt="Foto hochladen">
+        </figure>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-sm-9" style="background-color:yellow;">
+    </div>
+    <div class="col-sm-3" style="background-color:yellow;">
+      <p align="right">
+        <button class="btn-secondary float-right">Speichern</button>
+        <button class="btn-secondary float-right">Drucken</button>
+    </div>
+  </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%end%>
+</body>
+
+</html>
